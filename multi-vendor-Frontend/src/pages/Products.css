@@ -1,0 +1,132 @@
+.products-page {
+  min-height: 100vh;
+  background: #f4f6fa;
+  padding: 50px 30px;
+}
+
+.products-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.products-header {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.products-header h1 {
+  font-size: 42px;
+  color: #172033;
+  margin-bottom: 10px;
+}
+
+.products-header p {
+  font-size: 18px;
+  color: #64748b;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+}
+
+.product-image {
+  height: 220px;
+  background: #f1f3f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 90px;
+}
+
+.product-info {
+  padding: 25px;
+}
+
+.product-category {
+  display: inline-block;
+  color: #ff9800;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-info h2 {
+  font-size: 24px;
+  color: #172033;
+  margin: 8px 0;
+}
+
+.product-vendor {
+  color: #475569;
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.product-info p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.product-price {
+  font-size: 25px;
+  font-weight: bold;
+  color: #172033;
+  margin: 18px 0 10px;
+}
+
+.add-cart-btn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 9px;
+  background: #ff9800;
+  color: #111827;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.add-cart-btn:hover {
+  background: #e68900;
+}
+
+.add-cart-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .products-page {
+    padding: 30px 15px;
+  }
+
+  .products-header h1 {
+    font-size: 32px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}

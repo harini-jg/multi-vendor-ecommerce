@@ -1,0 +1,440 @@
+.vendor-page {
+  min-height: 100vh;
+  background: #f4f6fa;
+  padding: 50px 25px;
+}
+
+.vendor-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.vendor-container > h1 {
+  text-align: center;
+  font-size: 40px;
+  color: #172033;
+  margin-bottom: 8px;
+}
+
+.vendor-container > p {
+  text-align: center;
+  color: #64748b;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+/* =========================
+   STATISTICS
+========================= */
+
+.vendor-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+
+  text-align: center;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+
+  border-top: 4px solid #ff9800;
+
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+  margin: 0 0 10px;
+
+  color: #64748b;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.stat-card strong {
+  color: #172033;
+
+  font-size: 30px;
+  font-weight: 800;
+}
+
+/* =========================
+   PRODUCTS SECTION
+========================= */
+
+.vendor-products {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.vendor-products-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 25px;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.vendor-products-header h2 {
+  margin: 0;
+
+  color: #172033;
+
+  font-size: 26px;
+}
+
+/* =========================
+   ADD PRODUCT BUTTON
+========================= */
+
+.add-product-btn {
+  padding: 11px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #ff9800;
+  color: #111827;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease,
+              transform 0.2s ease;
+}
+
+.add-product-btn:hover {
+  background: #e68900;
+
+  transform: translateY(-1px);
+}
+
+/* =========================
+   ADD PRODUCT FORM
+========================= */
+
+.vendor-card {
+  background: #f8fafc;
+
+  padding: 30px;
+
+  margin-bottom: 30px;
+
+  border-radius: 14px;
+
+  border: 1px solid #e2e8f0;
+}
+
+.vendor-card h2 {
+  color: #172033;
+
+  margin: 0 0 25px;
+
+  font-size: 24px;
+}
+
+.vendor-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.vendor-card label {
+  margin-bottom: 8px;
+
+  color: #334155;
+
+  font-weight: 600;
+}
+
+.vendor-card input,
+.vendor-card select,
+.vendor-card textarea {
+  width: 100%;
+
+  padding: 13px;
+
+  margin-bottom: 18px;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
+
+  background: white;
+}
+
+.vendor-card input:focus,
+.vendor-card select:focus,
+.vendor-card textarea:focus {
+  outline: none;
+
+  border-color: #ff9800;
+
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.12);
+}
+
+.vendor-card textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+.vendor-card button {
+  padding: 13px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #ff9800;
+
+  color: #111827;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  margin-top: 5px;
+
+  transition: background 0.2s ease;
+}
+
+.vendor-card button:hover {
+  background: #e68900;
+}
+
+/* =========================
+   PRODUCT TABLE
+========================= */
+
+.vendor-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.vendor-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 800px;
+}
+
+.vendor-table th {
+  background: #172033;
+
+  color: white;
+
+  padding: 14px 12px;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.vendor-table th:first-child {
+  border-radius: 8px 0 0 0;
+}
+
+.vendor-table th:last-child {
+  border-radius: 0 8px 0 0;
+}
+
+.vendor-table td {
+  padding: 15px 12px;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  color: #334155;
+
+  font-size: 14px;
+}
+
+.vendor-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.vendor-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* =========================
+   EDIT BUTTON
+========================= */
+
+.edit-btn {
+  padding: 7px 12px;
+
+  margin-right: 6px;
+
+  border: 1px solid #2563eb;
+
+  border-radius: 6px;
+
+  background: white;
+
+  color: #2563eb;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: #2563eb;
+
+  color: white;
+}
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
+.delete-btn {
+  padding: 7px 12px;
+
+  border: 1px solid #dc2626;
+
+  border-radius: 6px;
+
+  background: white;
+
+  color: #dc2626;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+
+  color: white;
+}
+
+/* =========================
+   EMPTY PRODUCTS
+========================= */
+
+.empty-products {
+  padding: 40px;
+
+  text-align: center;
+
+  color: #64748b;
+
+  font-size: 16px;
+
+  background: #f8fafc;
+
+  border-radius: 10px;
+
+  border: 1px dashed #cbd5e1;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .vendor-container {
+    max-width: 100%;
+  }
+
+  .vendor-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .vendor-products {
+    padding: 25px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .vendor-page {
+    padding: 30px 15px;
+  }
+
+  .vendor-container > h1 {
+    font-size: 32px;
+  }
+
+  .vendor-container > p {
+    font-size: 16px;
+  }
+
+  .vendor-products {
+    padding: 20px;
+  }
+
+  .vendor-products-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+  .add-product-btn {
+    width: 100%;
+  }
+
+  .vendor-card {
+    padding: 20px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+}

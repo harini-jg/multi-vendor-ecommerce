@@ -1,0 +1,177 @@
+.welcome-text {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navbar {
+  min-height: 70px;
+  padding: 0 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #131921;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  gap: 25px;
+}
+
+/* Logo */
+
+.navbar-logo a {
+  color: white;
+  text-decoration: none;
+
+  font-size: 26px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.navbar-logo a:hover {
+  color: #ff9900;
+}
+
+/* Search */
+
+.navbar-search {
+  display: flex;
+  flex: 1;
+  max-width: 400px;
+  margin: 0 15px;
+}
+
+.navbar-search input {
+  flex: 1;
+
+  padding: 11px 15px;
+
+  border: none;
+  outline: none;
+
+  font-size: 15px;
+
+  border-radius: 6px 0 0 6px;
+}
+
+.navbar-search button {
+  padding: 11px 20px;
+
+  border: none;
+
+  background: #ff9900;
+  color: #131921;
+
+  font-weight: 700;
+  cursor: pointer;
+
+  border-radius: 0 6px 6px 0;
+
+  transition: background 0.2s ease;
+}
+
+.navbar-search button:hover {
+  background: #e88a00;
+}
+
+/* Navigation Links */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  white-space: nowrap;
+}
+
+.navbar-links a {
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: color 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: #ff9900;
+}
+
+/* Welcome User */
+
+.welcome-text {
+  color: #f1f5f9;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  padding: 8px 10px;
+
+  border-left: 1px solid #475569;
+}
+
+/* Logout Button */
+
+.logout-btn {
+  padding: 8px 14px;
+
+  border: 1px solid #ff9900;
+  border-radius: 6px;
+
+  background: transparent;
+  color: #ff9900;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #ff9900;
+  color: #131921;
+}
+
+/* Mobile */
+
+@media (max-width: 1100px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .navbar-search {
+    max-width: 350px;
+    margin: 0 10px;
+  }
+
+  .navbar-links {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 850px) {
+  .navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 15px 20px;
+  }
+
+  .navbar-search {
+    order: 3;
+    width: 100%;
+    max-width: none;
+    margin: 10px 0 0;
+  }
+
+  .navbar-links {
+    gap: 12px;
+  }
+}
