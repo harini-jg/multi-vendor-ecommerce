@@ -30,7 +30,7 @@ function Cart() {
 
   try {
     const response = await fetch(
-      "http://localhost:8080/api/orders",
+      "https://multi-vendor-ecommerce-production-92e9.up.railway.app/api/orders",
       {
         method: "POST",
         headers: {

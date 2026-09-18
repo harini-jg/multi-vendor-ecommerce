@@ -12,7 +12,7 @@ function Signup() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/auth/signup",
+        "https://multi-vendor-ecommerce-production-92e9.up.railway.app/api/auth/signup",
         {
           method: "POST",
           headers: {

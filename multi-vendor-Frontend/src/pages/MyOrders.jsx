@@ -16,7 +16,7 @@ function MyOrders() {
     }
 
     fetch(
-      `http://localhost:8080/api/orders/user/${user.id}`,
+      `https://multi-vendor-ecommerce-production-92e9.up.railway.app/api/orders/user/${user.id}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -10,7 +10,7 @@ function Products() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/products")
+    fetch("https://multi-vendor-ecommerce-production-92e9.up.railway.app/api/products")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch products");

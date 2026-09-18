@@ -4,16 +4,6 @@ import "./VendorDashboard.css";
 
 function VendorDashboard() {
   const { user } = useAuth();
-  if (!user || user.role !== "VENDOR") {
-  return (
-    <div className="vendor-page">
-      <div className="vendor-container">
-        <h1>Access Denied</h1>
-        <p>Only vendors can access the Vendor Dashboard.</p>
-      </div>
-    </div>
-  );
-}
 
   const [products, setProducts] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -27,7 +17,7 @@ function VendorDashboard() {
 
   // Load all products
   const loadProducts = () => {
-    fetch("http://localhost:8080/api/products")
+    fetch("https://multi-vendor-ecommerce-production-92e9.up.railway.app/api/products")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to load products");
@@ -43,9 +33,22 @@ function VendorDashboard() {
       });
   };
 
+  // Load products when page opens
   useEffect(() => {
     loadProducts();
   }, []);
+
+  // Check vendor access
+  if (!user || user.role !== "VENDOR") {
+    return (
+      <div className="vendor-page">
+        <div className="vendor-container">
+          <h1>Access Denied</h1>
+          <p>Only vendors can access the Vendor Dashboard.</p>
+        </div>
+      </div>
+    );
+  }
 
   // Add product
   const handleAddProduct = async (e) => {
@@ -55,7 +58,7 @@ function VendorDashboard() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/products",
+        "https://multi-vendor-ecommerce-production-92e9.up.railway.app/api/products",
         {
           method: "POST",
           headers: {
@@ -95,69 +98,70 @@ function VendorDashboard() {
       alert("Backend connection failed");
     }
   };
+
   // Edit product
-const handleEditProduct = async (product) => {
-  const newName = window.prompt(
-    "Enter product name:",
-    product.name
-  );
-
-  if (newName === null) {
-    return;
-  }
-
-  const newPrice = window.prompt(
-    "Enter price:",
-    product.price
-  );
-
-  if (newPrice === null) {
-    return;
-  }
-
-  const newStock = window.prompt(
-    "Enter stock:",
-    product.stock
-  );
-
-  if (newStock === null) {
-    return;
-  }
-
-  const token = localStorage.getItem("token");
-
-  try {
-    const response = await fetch(
-      `http://localhost:8080/api/products/${product.id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          name: newName,
-          price: Number(newPrice),
-          category: product.category,
-          vendor: product.vendor,
-          description: product.description,
-          stock: Number(newStock),
-        }),
-      }
+  const handleEditProduct = async (product) => {
+    const newName = window.prompt(
+      "Enter product name:",
+      product.name
     );
 
-    if (response.ok) {
-      alert("Product updated successfully!");
-      loadProducts();
-    } else {
-      const error = await response.text();
-      alert("Failed: " + error);
+    if (newName === null) {
+      return;
     }
-  } catch (error) {
-    console.error("Edit product error:", error);
-    alert("Backend connection failed");
-  }
-};
+
+    const newPrice = window.prompt(
+      "Enter price:",
+      product.price
+    );
+
+    if (newPrice === null) {
+      return;
+    }
+
+    const newStock = window.prompt(
+      "Enter stock:",
+      product.stock
+    );
+
+    if (newStock === null) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await fetch(
+        `https://multi-vendor-ecommerce-production-92e9.up.railway.app/api/products/${product.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: newName,
+            price: Number(newPrice),
+            category: product.category,
+            vendor: product.vendor,
+            description: product.description,
+            stock: Number(newStock),
+          }),
+        }
+      );
+
+      if (response.ok) {
+        alert("Product updated successfully!");
+        loadProducts();
+      } else {
+        const error = await response.text();
+        alert("Failed: " + error);
+      }
+    } catch (error) {
+      console.error("Edit product error:", error);
+      alert("Backend connection failed");
+    }
+  };
 
   // Delete product
   const handleDeleteProduct = async (id) => {
@@ -173,7 +177,7 @@ const handleEditProduct = async (product) => {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/products/${id}`,
+        `https://multi-vendor-ecommerce-production-92e9.up.railway.app/api/products/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -207,14 +211,12 @@ const handleEditProduct = async (product) => {
   const totalValue = products.reduce(
     (total, product) =>
       total +
-      Number(product.price) *
-        Number(product.stock),
+      Number(product.price) * Number(product.stock),
     0
   );
 
   return (
     <div className="vendor-page">
-
       <div className="vendor-container">
 
         <h1>Vendor Dashboard</h1>
@@ -272,14 +274,11 @@ const handleEditProduct = async (product) => {
           {/* Add Product Form */}
 
           {showForm && (
-
             <div className="vendor-card">
 
               <h2>Add New Product</h2>
 
-              <form
-                onSubmit={handleAddProduct}
-              >
+              <form onSubmit={handleAddProduct}>
 
                 <label>
                   Product Name
@@ -320,7 +319,6 @@ const handleEditProduct = async (product) => {
                   }
                   required
                 >
-
                   <option value="">
                     Select category
                   </option>
@@ -340,7 +338,6 @@ const handleEditProduct = async (product) => {
                   <option value="Accessories">
                     Accessories
                   </option>
-
                 </select>
 
                 <label>
@@ -391,124 +388,98 @@ const handleEditProduct = async (product) => {
               </form>
 
             </div>
-
           )}
 
           {/* Product Table */}
 
           {products.length === 0 ? (
-
             <p className="empty-products">
               No products available.
             </p>
-
           ) : (
-
             <div className="vendor-table-wrapper">
 
               <table className="vendor-table">
 
                 <thead>
-
                   <tr>
-
                     <th>ID</th>
-
                     <th>Product</th>
-
                     <th>Category</th>
-
                     <th>Price</th>
-
                     <th>Stock</th>
-
                     <th>Vendor</th>
-
                     <th>Actions</th>
-
                   </tr>
-
                 </thead>
 
                 <tbody>
 
-                  {products.map(
-                    (product) => (
+                  {products.map((product) => (
+                    <tr key={product.id}>
 
-                      <tr key={product.id}>
+                      <td>
+                        {product.id}
+                      </td>
 
-                        <td>
-                          {product.id}
-                        </td>
+                      <td>
+                        {product.name}
+                      </td>
 
-                        <td>
-                          {product.name}
-                        </td>
+                      <td>
+                        {product.category}
+                      </td>
 
-                        <td>
-                          {product.category}
-                        </td>
+                      <td>
+                        ₹
+                        {Number(product.price).toLocaleString(
+                          "en-IN"
+                        )}
+                      </td>
 
-                        <td>
-                          ₹
-                          {Number(
-                            product.price
-                          ).toLocaleString(
-                            "en-IN"
-                          )}
-                        </td>
+                      <td>
+                        {product.stock}
+                      </td>
 
-                        <td>
-                          {product.stock}
-                        </td>
+                      <td>
+                        {product.vendor}
+                      </td>
 
-                        <td>
-                          {product.vendor}
-                        </td>
+                      <td>
 
-                        <td>
-                        
                         <button
-                           className="edit-btn"
-                           onClick={() => 
-                            handleEditProduct(
-                              product
-                              )
-                            }
-                          >
-                            Edit
-                          </button>
+                          className="edit-btn"
+                          onClick={() =>
+                            handleEditProduct(product)
+                          }
+                        >
+                          Edit
+                        </button>
 
-                          <button
-                            className="delete-btn"
-                            onClick={() =>
-                              handleDeleteProduct(
-                                product.id
-                              )
-                            }
-                          >
-                            Delete
-                          </button>
+                        <button
+                          className="delete-btn"
+                          onClick={() =>
+                            handleDeleteProduct(product.id)
+                          }
+                        >
+                          Delete
+                        </button>
 
-                        </td>
+                      </td>
 
-                      </tr>
-
-                    )
-                  )}
+                    </tr>
+                  ))}
 
                 </tbody>
 
               </table>
 
             </div>
-
           )}
 
         </div>
 
       </div>
-
     </div>
   );
 }
