@@ -41,7 +41,10 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                Arrays.asList("http://localhost:5173")
+                Arrays.asList(
+                    "http://localhost:5173",
+                    "https://multi-vendor-ecommerce-green.vercel.app"
+                )
         );
 
         configuration.setAllowedMethods(
