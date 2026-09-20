@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -46,7 +47,12 @@ function Login() {
         // Go to home page
         navigate("/");
       } else {
-        alert(data);
+        const errorMessage =
+          data.message ||
+          data.error ||
+          (typeof data === "string" ? data : "Login failed");
+
+        alert(errorMessage);
       }
     } catch (error) {
       console.error("Login error:", error);
