@@ -84,9 +84,17 @@ function Products() {
             {products.map((product) => (
               <div className="product-card" key={product.id}>
 
-                <div className="product-image">
+                {product.imageUrl ? (
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="product-image"
+                  />
+                ) : (
+                  <div className="product-image">
                   🛍️
-                </div>
+                  </div>
+                )}
 
                 <div className="product-info">
 

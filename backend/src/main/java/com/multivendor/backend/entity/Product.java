@@ -1,3 +1,4 @@
+
 package com.multivendor.backend.entity;
 
 import jakarta.persistence.*;
@@ -21,6 +22,8 @@ public class Product {
     private String description;
 
     private int stock;
+
+    private String imageUrl;
 
     public Product() {
     }
@@ -79,5 +82,13 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

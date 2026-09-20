@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import "./VendorDashboard.css";
@@ -14,10 +15,13 @@ function VendorDashboard() {
   const [vendor, setVendor] = useState("");
   const [description, setDescription] = useState("");
   const [stock, setStock] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   // Load all products
   const loadProducts = () => {
-    fetch("https://multi-vendor-ecommerce-production-92e9.up.railway.app/api/products")
+    fetch(
+      "https://multi-vendor-ecommerce-production-92e9.up.railway.app/api/products"
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to load products");
@@ -72,6 +76,7 @@ function VendorDashboard() {
             vendor: vendor,
             description: description,
             stock: Number(stock),
+            imageUrl: imageUrl,
           }),
         }
       );
@@ -85,6 +90,7 @@ function VendorDashboard() {
         setVendor("");
         setDescription("");
         setStock("");
+        setImageUrl("");
 
         setShowForm(false);
 
@@ -128,6 +134,15 @@ function VendorDashboard() {
       return;
     }
 
+    const newImageUrl = window.prompt(
+      "Enter product image URL:",
+      product.imageUrl || ""
+    );
+
+    if (newImageUrl === null) {
+      return;
+    }
+
     const token = localStorage.getItem("token");
 
     try {
@@ -146,6 +161,7 @@ function VendorDashboard() {
             vendor: product.vendor,
             description: product.description,
             stock: Number(newStock),
+            imageUrl: newImageUrl,
           }),
         }
       );
@@ -188,7 +204,6 @@ function VendorDashboard() {
 
       if (response.ok) {
         alert("Product deleted successfully!");
-
         loadProducts();
       } else {
         const error = await response.text();
@@ -202,16 +217,14 @@ function VendorDashboard() {
 
   // Total stock
   const totalStock = products.reduce(
-    (total, product) =>
-      total + Number(product.stock),
+    (total, product) => total + Number(product.stock),
     0
   );
 
   // Total product value
   const totalValue = products.reduce(
     (total, product) =>
-      total +
-      Number(product.price) * Number(product.stock),
+      total + Number(product.price) * Number(product.stock),
     0
   );
 
@@ -221,9 +234,7 @@ function VendorDashboard() {
 
         <h1>Vendor Dashboard</h1>
 
-        <p>
-          Manage your products and inventory
-        </p>
+        <p>Manage your products and inventory</p>
 
         {/* Statistics */}
 
@@ -231,16 +242,12 @@ function VendorDashboard() {
 
           <div className="stat-card">
             <h3>Total Products</h3>
-            <strong>
-              {products.length}
-            </strong>
+            <strong>{products.length}</strong>
           </div>
 
           <div className="stat-card">
             <h3>Total Stock</h3>
-            <strong>
-              {totalStock}
-            </strong>
+            <strong>{totalStock}</strong>
           </div>
 
           <div className="stat-card">
@@ -262,9 +269,7 @@ function VendorDashboard() {
 
             <button
               className="add-product-btn"
-              onClick={() =>
-                setShowForm(!showForm)
-              }
+              onClick={() => setShowForm(!showForm)}
             >
               + Add Product
             </button>
@@ -280,104 +285,79 @@ function VendorDashboard() {
 
               <form onSubmit={handleAddProduct}>
 
-                <label>
-                  Product Name
-                </label>
+                <label>Product Name</label>
 
                 <input
                   type="text"
                   placeholder="Enter product name"
                   value={name}
-                  onChange={(e) =>
-                    setName(e.target.value)
-                  }
+                  onChange={(e) => setName(e.target.value)}
                   required
                 />
 
-                <label>
-                  Price
-                </label>
+                <label>Price</label>
 
                 <input
                   type="number"
                   placeholder="Enter price"
                   value={price}
-                  onChange={(e) =>
-                    setPrice(e.target.value)
-                  }
+                  onChange={(e) => setPrice(e.target.value)}
                   required
                 />
 
-                <label>
-                  Category
-                </label>
+                <label>Category</label>
 
                 <select
                   value={category}
-                  onChange={(e) =>
-                    setCategory(e.target.value)
-                  }
+                  onChange={(e) => setCategory(e.target.value)}
                   required
                 >
-                  <option value="">
-                    Select category
-                  </option>
+                  <option value="">Select category</option>
 
-                  <option value="Electronics">
-                    Electronics
-                  </option>
-
-                  <option value="Fashion">
-                    Fashion
-                  </option>
-
+                  <option value="Electronics">Electronics</option>
+                  <option value="Fashion">Fashion</option>
                   <option value="Home & Living">
                     Home & Living
                   </option>
-
-                  <option value="Accessories">
-                    Accessories
-                  </option>
+                  <option value="Accessories">Accessories</option>
                 </select>
 
-                <label>
-                  Vendor
-                </label>
+                <label>Vendor</label>
 
                 <input
                   type="text"
                   placeholder="Enter vendor name"
                   value={vendor}
-                  onChange={(e) =>
-                    setVendor(e.target.value)
-                  }
+                  onChange={(e) => setVendor(e.target.value)}
                   required
                 />
 
-                <label>
-                  Description
-                </label>
+                <label>Description</label>
 
                 <textarea
                   placeholder="Enter product description"
                   value={description}
-                  onChange={(e) =>
-                    setDescription(e.target.value)
-                  }
+                  onChange={(e) => setDescription(e.target.value)}
                   required
                 />
 
-                <label>
-                  Stock
-                </label>
+                <label>Product Image URL</label>
+
+                <input
+                  type="url"
+                  placeholder="Paste product image URL"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  required
+                />
+
+                <label>Stock</label>
 
                 <input
                   type="number"
                   placeholder="Enter stock quantity"
                   value={stock}
-                  onChange={(e) =>
-                    setStock(e.target.value)
-                  }
+                  onChange={(e) => setStock(e.target.value)}
                   required
                 />
 
@@ -418,17 +398,11 @@ function VendorDashboard() {
                   {products.map((product) => (
                     <tr key={product.id}>
 
-                      <td>
-                        {product.id}
-                      </td>
+                      <td>{product.id}</td>
 
-                      <td>
-                        {product.name}
-                      </td>
+                      <td>{product.name}</td>
 
-                      <td>
-                        {product.category}
-                      </td>
+                      <td>{product.category}</td>
 
                       <td>
                         ₹
@@ -437,21 +411,15 @@ function VendorDashboard() {
                         )}
                       </td>
 
-                      <td>
-                        {product.stock}
-                      </td>
+                      <td>{product.stock}</td>
 
-                      <td>
-                        {product.vendor}
-                      </td>
+                      <td>{product.vendor}</td>
 
                       <td>
 
                         <button
                           className="edit-btn"
-                          onClick={() =>
-                            handleEditProduct(product)
-                          }
+                          onClick={() => handleEditProduct(product)}
                         >
                           Edit
                         </button>
