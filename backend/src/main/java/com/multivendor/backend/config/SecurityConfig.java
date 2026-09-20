@@ -102,7 +102,7 @@ public class SecurityConfig {
                     "/api/products"
                 ).permitAll()
 
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
 
             )
 
