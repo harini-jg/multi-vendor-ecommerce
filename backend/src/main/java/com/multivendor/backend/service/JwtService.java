@@ -2,6 +2,7 @@ package com.multivendor.backend.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -22,10 +23,12 @@ public class JwtService {
                     SECRET_KEY.getBytes(StandardCharsets.UTF_8)
             );
 
-    public String generateToken(String email) {
+    // Generate JWT Token with Email and Role
+    public String generateToken(String email, String role) {
 
         return Jwts.builder()
                 .subject(email)
+                .claim("role", role)
                 .issuedAt(new Date())
                 .expiration(
                         new Date(
@@ -37,6 +40,7 @@ public class JwtService {
                 .compact();
     }
 
+    // Extract Email from Token
     public String extractEmail(String token) {
 
         return Jwts.parser()
@@ -47,10 +51,21 @@ public class JwtService {
                 .getSubject();
     }
 
+    // Extract Role from Token
+    public String extractRole(String token) {
+
+        return Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .get("role", String.class);
+    }
+
+    // Validate Token
     public boolean isTokenValid(String token) {
 
         try {
-
             Jwts.parser()
                     .verifyWith(key)
                     .build()

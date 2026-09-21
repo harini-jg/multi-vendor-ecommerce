@@ -38,9 +38,7 @@ public class AuthController {
                     .body(Map.of("message", "Email already exists"));
         }
 
-        if (user.getRole() == null || user.getRole().isEmpty()) {
-            user.setRole("CUSTOMER");
-        }
+        user.setRole("CUSTOMER");
 
         user.setPassword(
                 passwordEncoder.encode(user.getPassword())
@@ -72,7 +70,8 @@ public class AuthController {
         }
 
         String token = jwtService.generateToken(
-                existingUser.getEmail()
+            existingUser.getEmail(),
+            existingUser.getRole()
         );
 
         Map<String, Object> response = new HashMap<>();

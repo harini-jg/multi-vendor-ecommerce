@@ -102,6 +102,21 @@ public class SecurityConfig {
                     "/api/products"
                 ).permitAll()
 
+                .requestMatchers(
+                    HttpMethod.POST,
+                    "/api/products"
+                ).hasRole("VENDOR")
+
+                .requestMatchers(
+                    HttpMethod.PUT,
+                    "/api/products/**"
+                ).hasRole("VENDOR")
+
+                .requestMatchers(
+                    HttpMethod.DELETE,
+                    "/api/products/**"
+                ).hasRole("VENDOR")
+
                 .anyRequest().authenticated()
 
             )
