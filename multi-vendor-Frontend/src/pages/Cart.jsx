@@ -101,8 +101,17 @@ function Cart() {
               >
 
                 <div className="cart-item-image">
-                  {item.icon || "🛍️"}
+                  {item.imageUrl ? (
+                    <img
+                      src={item.imageUrl}
+                      alt={item.name}
+                      className="cart-product-image"
+                    />
+                  ) : (
+                    <span>{item.icon || "🛍️"}</span>
+                   )}
                 </div>
+                
 
                 <div className="cart-item-details">
 

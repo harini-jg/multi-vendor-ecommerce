@@ -336,4 +336,11 @@
     margin-left: auto;
   }
 
+  .cart-product-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
 }
