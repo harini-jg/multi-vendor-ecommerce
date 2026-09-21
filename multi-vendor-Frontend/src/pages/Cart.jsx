@@ -41,6 +41,15 @@ function Cart() {
           userId: user.id,
           totalAmount: total,
           status: "CONFIRMED",
+
+          items: cart.map((item) => ({
+            productId: item.id,
+            productName: item.name,
+            category: item.category,
+            price: Number(item.price),
+            quantity: item.quantity,
+            imageUrl: item.imageUrl,
+          })),
         }),
       }
     );
